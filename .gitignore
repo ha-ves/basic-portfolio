@@ -1,0 +1,18 @@
+# Jekyll build files
+# Note: _site/ is intentionally tracked for GitHub Pages deployment
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Bundler
+.bundle/
+vendor/
+
+# Ruby
+*.gem
+*.rbc
+.config
+
+# OS files
+.DS_Store
+Thumbs.db
