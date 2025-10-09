@@ -7,10 +7,18 @@
                 I'm {{ site.name | split: ' ' | first }} 
                 {% if site.external-links %}
                 <span class="external-links">
-                    {% assign platforms = "linkedin,x-twitter,github,stackoverflow,discord,medium,threads,bluesky,instagram,youtube" | split: "," %}
+                    {% assign platforms = "linkedin,x-twitter,github,stackoverflow,discord,medium,threads,bluesky,instagram,youtube,website" | split: "," %}
                     {% for platform in platforms %}
                         {% if site.external-links[platform] %}
-                            {% case platform %}
+                        {% case platform %}
+                            {% when 'website' %}
+                                {% assign websites = site.external-links[platform] | split: "," %}
+                                {% for url in websites %}
+                                {% assign display_url = url | remove: 'https://' | remove: 'http://' %}
+                                <a href="{{ url }}" target="_blank">
+                                    <i class="fa-solid fa-globe"></i> {{ display_url }}
+                                </a>
+                                {% endfor %}
                             {% when 'linkedin' %}
                             <a href="https://www.linkedin.com/in/{{ site.external-links[platform] }}/" target="_blank">
                                 <i class="fa-brands fa-linkedin"></i>

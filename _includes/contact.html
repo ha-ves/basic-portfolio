@@ -4,17 +4,11 @@
 
     <div class="group">
       
-        <form action="https://formspree.io/f/{{site.formspree-key}}" method="POST">
-            <label for="name">Name</label>
-            <input type="text" id="name">
-
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email">
-
-            <label for="message">Message</label>
-            <textarea id="message" cols = "30" rows="10" name="message"></textarea>
-
-            <button type="submit">Send Message</button>
-        </form>
+        <div class="contact-linkedin">
+            <p>You can contact me directly via LinkedIn:</p>
+            <a href="https://www.linkedin.com/in/{{ site.external-links.linkedin }}/" target="_blank" rel="noopener" class="linkedin-button">
+                <i class="fa-brands fa-linkedin"></i> Connect on LinkedIn
+            </a>
+        </div>
     </div>
   </section>
