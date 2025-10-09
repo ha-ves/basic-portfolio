@@ -325,3 +325,46 @@ To add a table, use the following format
 
 ** make sure to leave a line betwen the table and the header
 
+---
+
+## Local Development Setup
+
+If you want to run and test your portfolio site locally before pushing changes to GitHub, follow these steps:
+
+### Prerequisites
+- Ruby (version 3.0 or higher)
+- Bundler gem
+
+### Setup Instructions
+
+1. **Install Bundler** (if not already installed):
+   ```bash
+   gem install bundler
+   ```
+
+2. **Install Jekyll and dependencies**:
+   ```bash
+   bundle install
+   ```
+
+3. **Build the site**:
+   ```bash
+   bundle exec jekyll build
+   ```
+
+4. **Run the local development server**:
+   ```bash
+   bundle exec jekyll serve
+   ```
+
+5. **View your site**: Open your browser and navigate to `http://localhost:4000`
+
+The development server will automatically rebuild your site when you make changes to files. Press `Ctrl+C` to stop the server.
+
+### Common Commands
+
+- **Build site**: `bundle exec jekyll build`
+- **Serve site locally**: `bundle exec jekyll serve`
+- **Serve with live reload**: `bundle exec jekyll serve --livereload`
+- **Build for production**: `bundle exec jekyll build --config _config.yml`
+
