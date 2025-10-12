@@ -1,20 +1,22 @@
-{% assign image_paths = include.images | split: ", " %}
+{% assign image_pairs = include.images | split: ", " %}
 {% assign gallery_height = include.height | default: "300" %}
 
 <div class="image-gallery" style="--gallery-height: {{ gallery_height }}px;">
-  {% for image_path in image_paths %}
-      {% assign image_name = image_path | strip %}
-      {% if image_name contains 'https://' %}
+  {% for pair in image_pairs %}
+      {% assign parts = pair | split: "|" %}
+      {% assign image_path = parts[0] | strip %}
+      {% assign alt_text = parts[1] | default: image_path %}
+      {% if image_path contains 'https://' %}
           <img 
-              src="{{ image_name }}"
-              alt="Web image"
+              src="{{ image_path }}"
+              alt="{{ alt_text }}"
               loading="lazy"
           />
       {% else %}
           {% assign page_url_without_index = page.url | remove: 'index' | remove: '.html' %}
           <img 
-              src="{{ page_url_without_index }}{{ image_name }}" 
-              alt="{{image_name}}"
+              src="{{ page_url_without_index }}{{ image_path }}" 
+              alt="{{ alt_text }}"
               loading="lazy"
               onerror="this.onerror=null;this.src=this.src.replace('.webp','.png').replace('.png','.webp');"
           />
