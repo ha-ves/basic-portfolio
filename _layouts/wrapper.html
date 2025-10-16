@@ -3,16 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
 
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+    <link rel="icon" href="{{ site.favicon }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ site.favicon }}" type="image/x-icon">
 
+    <!-- Deferred styles: use data-href so JS can load them after privacy banner is dismissed -->
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/syntax.css">
+
+    <link id="deferred-github-markdown" rel="stylesheet" data-href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.8.1/github-markdown-light.min.css" integrity="sha512-X175XRJAO6PHAUi8AA7GP8uUF5Wiv+w9bOi64i02CHKDQBsO1yy0jLSKaUKg/NhRCDYBmOLQCfKaTaXiyZlLrw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link id="deferred-font-awesome" rel="stylesheet" data-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- noscript fallback: ensure CDN CSS is loaded when JS is disabled -->
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.8.1/github-markdown-light.min.css" integrity="sha512-X175XRJAO6PHAUi8AA7GP8uUF5Wiv+w9bOi64i02CHKDQBsO1yy0jLSKaUKg/NhRCDYBmOLQCfKaTaXiyZlLrw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </noscript>
+    
+    <style>
+        .markdown-body {
+            box-sizing: border-box;
+            margin: 45px;
+            margin-top: 15px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 767px) {
+            .markdown-body {
+                margin: 15px;
+            }
+        }
+    </style>
 
     <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
 
@@ -20,16 +43,53 @@
     <title>{{ site.title }}</title>
     
 </head>
-<body style="margin-top:40px;">
-    <!-- GDPR/APPI notice banner with cookie logic -->
-    <div id="privacy-banner" style="background: #24292f; color: #fff; padding: 10px 0; text-align: center; font-size: 0.95em; z-index: 1000; position: fixed; top: 0; left: 0; width: 100%; display: none;">
-        This website is hosted on <a href="https://pages.github.com/" target="_blank" style="color: #58a6ff; text-decoration: underline;">GitHub Pages</a>.
-        By continuing to browse, you agree to the 
-        <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" style="color: #58a6ff; text-decoration: underline;">GitHub Privacy Policy</a>.<br>
-        Some sections may link to <a href="https://www.tekat.my.id/" target="_blank" style="color: #58a6ff; text-decoration: underline;">tekat.my.id</a>; please review the 
-        <a href="https://www.tekat.my.id/privacy-policy/" target="_blank" style="color: #58a6ff; text-decoration: underline;">tekat.my.id Privacy Policy</a> for details on how your data is handled there.<br>
-        This site uses <a href="https://fonts.google.com/about" target="_blank" style="color: #58a6ff; text-decoration: underline;">Google Fonts</a> and is accelerated by <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" style="color: #58a6ff; text-decoration: underline;">Cloudflare CDN</a> which may collect usage data.<br>
-        <button id="privacy-banner-close" style="margin-top:6px; background:#58a6ff; color:#24292f; border:none; padding:4px 12px; border-radius:3px; cursor:pointer;">Dismiss</button>
+<body>
+    <!-- GDPR/APPI notice modal (centered, with backdrop) -->
+    <div id="privacy-banner" role="dialog" aria-modal="true" aria-labelledby="privacy-title" style="display: none; position: fixed; inset: 0; z-index: 10000; align-items: center; justify-content: center;">
+        <!-- Backdrop -->
+        <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.8);"></div>
+
+        <!-- Dialog card -->
+        <div class="privacy-dialog" style="position: relative; background: #ffffff; color: #24292f; padding: 0; border-radius: 8px; max-width: 720px; width: 92%; box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: left; z-index: 10001;">
+            <div style="max-height: 70vh; overflow: auto; padding: 20px; box-sizing: border-box;">
+                <!-- Custom scrollbar (modern browsers) -->
+                <style>
+                    .privacy-dialog div::-webkit-scrollbar { height: 8px; width: 8px; }
+                    .privacy-dialog div::-webkit-scrollbar-thumb { background: rgba(36,41,47,0.35); border-radius: 6px; }
+                    .privacy-dialog div { scrollbar-width: thin; scrollbar-color: rgba(36,41,47,0.35) transparent; }
+                </style>
+                <h3 id="privacy-title" style="margin-top:0; margin-bottom:8px;">
+                プライバシーとサードパーティサービス
+                <br>
+                Privacy & Third-Party Services
+                
+                <br><br><hr><br>
+                
+                このウェブサイトは GitHub Pages 上でホストされています（<a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" style="color:#58a6ff;text-decoration:underline;">GitHub プライバシーポリシー</a>）。
+                <br><br>
+                一部のアセットやセクションは <a href="https://www.tekat.my.id/privacy-policy/" target="_blank" style="color:#58a6ff;text-decoration:underline;">tekat.my.id</a> にリンクする場合があり、また <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" style="color: #58a6ff; text-decoration: underline;">Cloudflare CDN</a> 経由の <a href="https://cdnjs.com/about" target="_blank" style="color:#58a6ff;text-decoration:underline;">cdnjs</a> を利用しています。
+                <br><br>
+                このサイトでは、埋め込みの YouTube 動画を含む場合があります。YouTube によるデータ処理の詳細は <a href="https://policies.google.com/technologies/partner-sites" target="_blank" style="color:#58a6ff;text-decoration:underline;">こちら</a> をご確認ください。
+
+                <br><br><hr><br>
+
+                This website is hosted on GitHub Pages. (<a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" style="color: #58a6ff; text-decoration: underline;">GitHub Privacy Policy</a>)
+                <br><br>
+                Some assets/sections may link to tekat.my.id (<a href="https://www.tekat.my.id/privacy-policy/" target="_blank" style="color: #58a6ff; text-decoration: underline;">Tekat Privacy Policy</a>) and uses <a href="https://cdnjs.com/about" target="_blank" style="color: #58a6ff; text-decoration: underline;">cdnjs</a> via <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" style="color: #58a6ff; text-decoration: underline;">Cloudflare CDN</a>.
+                <br><br>
+                This site may include embedded YouTube videos. For details on how YouTube processes data, please see <a href="https://policies.google.com/technologies/partner-sites" target="_blank" style="color:#58a6ff;text-decoration:underline;">YouTube embedding & partner sites</a>.
+
+                <br><br><hr><br>
+
+                このサイトを訪問し、「Dismiss」ボタンを閉じると利用を継続することで、これらのプライバシーポリシーを読み、理解したことに同意したものとみなされます。
+                <br><br>
+                By visiting and clicking the "Dismiss" button to continue using this site, you acknowledge that you have read and understood their respective privacy policies.
+                </h3>
+            </div>
+            <div style="text-align: center; padding: 10px;">
+                <button id="privacy-banner-close" style="margin-right: 15px; background:#58a6ff; color:#fff; border:none; padding:8px 14px; border-radius:6px; cursor:pointer;">Dismiss</button>
+            </div>
+        </div>
     </div>
     
     <!-- NAVBAR -->

@@ -8,10 +8,11 @@
 # Main Page Setup
 
 # title: John Doe's Portfolio # This is what shows up in the tab of the browser
-title: Ha-ves's Portfolio # This is what shows up in the tab of the browser
+title: Ha-ves' Portfolio # This is what shows up in the tab of the browser
 
 # Hero Section
 name: Ha-ves
+fullname: Hafizh Irfansyah Putra
 headline: System Engineer
 description: >- # dont remove this line. this will ignore all new lines until the next section
   Having 2+ years of software and hardware development experience.
@@ -20,12 +21,12 @@ description: >- # dont remove this line. this will ignore all new lines until th
   currently seeking to apply technical expertise to challenging engineering projects.
 
 # Place your profile image in /assets/images/profile-image/folder and edit the file name
-profile_image: ./assets/images/profile-image/avatar.jpeg
-
+profile_image: https://www.tekat.my.id/hafizh-profile-pic/
+favicon: https://avatars.githubusercontent.com/u/20160532?v=4
 
 # Link your resume
 # You can place your resume in assets/resume/{resume.pdf or add external link such as pdf saved in google drive 
-resume-url: https://www.tekat.my.id/ha-ves_cv2025/
+resume-url: https://www.tekat.my.id/hafizh_cv2025/
 
 
 # Set up external links - this will show up as small icons next to your name.
@@ -46,37 +47,66 @@ external-links:    # input only your own url slug. The icons with missing entrie
 
 # Skills Section - Add the list of your Skills by categories/tools. The indentation for each level needs to be precise. 
 skills:
-  - category: Programming Language
+  - category: Programming Languages
     tools:
-    - C/C++
-    - C#
-    - Python
-    - SQL
-  - category: Frameworks
+      - C / C++
+      - C#
+      - Python
+      - SQL
+      - Lua
+      # - Java
+  - category: Frameworks & Libraries
     tools:
-    - ROS2
-    - .NET
-    - PyTorch/TensorFlow
-    - oLLaMa
-  - category: Design / Modeling
+      - .NET (WPF / Xamarin.Forms)
+      - ROS2
+      - PyTorch
+      - Detectron2
+      - ONNX Runtime
+      - oLLaMa
+  - category: Design & Modeling
     tools:
-    - KiCad
-    - Autodesk Eagle
-    - Autodesk Fusion 360
-  - category: Electronics Hardware
+      - 3D design (Autodesk Fusion 360)
+      - PCB design (KiCad / Autodesk Eagle)
+  - category: Embedded & Electronics
     tools:
-    - STM32 (ST Microcontroller)
-    - ESP32 (Espressif)
-    - AVR (Atmel, now Microchip)
-    - Arduino / Raspberry Pi Boards
-    - Internet of Things (MQTT)
-  - category: System Administration / Cloud
+      - STM32 (C / C++)
+      - ESP32 / ESP8266 (Arduino / Espressif)
+      - Arduino
+      - AVR / Microcontroller
+      - UART / Serial
+      - SPI / I2C
+      - GPS / IMU / Magnetometer
+  - category: Networking & Protocols
     tools:
-    - Domain Management
-    - Server Management
-    - Cloud Computing (AWS, Azure, GCP)
-    - Containerization (Docker, Kubernetes)
-    - AI/ML Model Hosting (oLLaMa/Open WebUI, Vision Search)
+      - TCP/IP / UDP
+      - MAVLink
+      - Socket.IO
+      - MQTT
+      - Wi-Fi / Access Point
+      - AES-128 encryption
+  - category: Control & Robotics
+    tools:
+      - PID control
+      - Path planning
+      - Robotic arms (Kinova)
+  - category: Data & Visualization
+    tools:
+      - Real-time data visualization
+      - OxyPlot
+      - SQLite
+      - Dapper
+  - category: DevOps / Cloud / Infra
+    tools:
+      - Docker / containerization
+      - Virtual Private Cloud (VPC)
+      - Server & domain management
+      - Reverse proxies & SSL/TLS
+  - category: Tools & Misc
+    tools:
+      - Git / GitHub
+      - Game scripting & modding
+      - Tool development
+      - Open-source contributions
 
 # Contact Form Setup. Setup an account and copy over the key. When someone fills out the form, it will be received in your email.
 formspree-key:   # https://formspree.io/f/{8-digit key}
@@ -139,6 +169,7 @@ collections:
     permalink: /projects/:path/
 
 
+# markdown: GFM
 markdown: kramdown
 highlighter: rouge
 kramdown:

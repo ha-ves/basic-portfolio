@@ -2,6 +2,8 @@
 layout: wrapper
 ---
 
+{% include project-nav.html %}
+
 <div class="post-view">
     <div class="summary">
         {% if page['main-image'] contains '://' %}
@@ -10,7 +12,7 @@ layout: wrapper
             {% assign folder_path = page.path | split: "/" | slice: 0, 2 | join: "/" %}
             {% assign image_path = "/" | append: folder_path | append: page['main-image'] %}
         {% endif %}
-        <img src="{{ image_path }}" alt="{{ page.title }} image">
+        <img data-src="{{ image_path }}" alt="{{ page.title }} image">
         
         <div class="title-header">
             <h1>{{page.title}}</h1>
@@ -30,8 +32,11 @@ layout: wrapper
         </div>
     </div>
       
-    <div class="content">
+    <div class="markdown-body">
         {{content}}
+        <hr>
+        <p><em>This description is written with help of AI tools, but the project IS NOT. You can verify the source codes via the provided links where available.</em></p>
     </div>
 </div>
 
+{% include project-nav.html %}
